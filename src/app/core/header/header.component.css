@@ -1,0 +1,39 @@
+/* Navbar */
+.navbar {
+  background-color: #2d3748;
+  color: white;
+  padding: 14px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.menu {
+  display: flex;
+  gap: 0;
+}
+
+.menu a {
+  margin-left: 16px;
+  color: #cbd5e0;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.menu a:hover {
+  background-color: rgba(255,255,255,0.1);
+}
+
+.menu .active {
+  background-color: #3b82f6;
+  color: white;
+}

@@ -1,27 +1,79 @@
-# AngularModularProject
+# Campus Ideas - Angular Modular Project
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.21.
+Application Angular pour la gestion des suggestions du campus.
 
-## Development server
+## Description
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Cette application permet aux utilisateurs de :
+- Consulter la liste des suggestions
+- Rechercher des suggestions par titre ou catégorie
+- Aimer des suggestions
+- Ajouter des suggestions aux favoris
+- Filtrer les suggestions par statut (acceptée, refusée, en attente)
 
-## Code scaffolding
+## Technologies utilisées
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Angular 17+ (Architecture modulaire)
+- TypeScript
+- HTML/CSS
+- FormsModule pour la liaison de données
 
-## Build
+## Structure du projet
+```
+src/
+├── app/
+│   ├── core/
+│   │   ├── header/          # Composant header
+│   │   ├── footer/          # Composant footer
+│   │   └── list-suggestion/ # Composant liste des suggestions
+│   ├── models/
+│   │   └── suggestion.ts    # Modèle de données
+│   ├── app.component.*      # Composant racine
+│   └── app.module.ts        # Module principal
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Installation
 
-## Running unit tests
+1. Cloner le projet :
+```bash
+git clone [URL_DE_VOTRE_REPO]
+cd angular-campus-ideas
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+2. Installer les dépendances :
+```bash
+npm install
+```
 
-## Running end-to-end tests
+3. Lancer l'application :
+```bash
+ng serve
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+4. Ouvrir le navigateur à l'adresse : `http://localhost:4200`
 
-## Further help
+## Fonctionnalités
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Liste des suggestions
+- Affichage de toutes les suggestions avec leurs détails
+- Catégories colorées
+- Statuts visuels (acceptée, refusée, en attente)
+
+### Recherche
+- Recherche en temps réel par titre ou catégorie
+
+### Interactions
+- Bouton "Like" pour augmenter le nombre de likes
+- Bouton "Ajouter aux favoris" pour sauvegarder les suggestions préférées
+
+### Favoris
+- Section dédiée affichant toutes les suggestions favorites
+
+## Auteur
+
+[Votre Nom]
+[Votre Email]
+
+## Date
+
+Janvier 2025

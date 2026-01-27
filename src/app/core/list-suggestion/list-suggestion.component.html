@@ -1,0 +1,56 @@
+<div class="page">
+  <div class="container">
+    <h1>Liste des suggestions</h1>
+    <input
+      class="search"
+      type="text"
+      placeholder="Rechercher par titre ou catégorie"
+      [(ngModel)]="search"
+    />
+    <div
+      class="card"
+      *ngFor="let s of filteredSuggestions"
+    >
+
+      <h2>{{ s.title }}</h2>
+
+      <div class="meta">
+        <span class="category">{{ s.category }}</span>
+        <span class="date">{{ s.date | date:'dd MMM yyyy' }}</span>
+      </div>
+
+      <p class="description">{{ s.description }}</p>
+      <span
+        class="status"
+        [ngClass]="{
+          accepted: s.status === 'acceptee',
+          refused: s.status === 'refusee',
+          pending: s.status === 'en_attente'
+        }"
+      >
+        {{ s.status | uppercase }}
+      </span>
+
+      <div class="actions" *ngIf="s.status !== 'refusee'">
+        <button class="like" (click)="likeSuggestion(s)">
+          👍 Like {{ s.nbLikes }}
+        </button>
+        <button class="fav" (click)="addToFavorites(s)">
+          ♡ Ajouter aux favoris
+        </button>
+      </div>
+
+    </div>
+
+    <div class="favorites" *ngIf="favorites.length > 0">
+      <h2>Favoris</h2>
+
+      <ul>
+        <li *ngFor="let f of favorites">
+          ⭐ {{ f.title }}
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>
