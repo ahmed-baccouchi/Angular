@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Suggestion } from '../../../models/suggestion';
 
 @Component({
@@ -6,10 +6,13 @@ import { Suggestion } from '../../../models/suggestion';
   templateUrl: './list-suggestion.component.html',
   styleUrl: './list-suggestion.component.css'
 })
-export class ListSuggestionComponent {
+export class ListSuggestionComponent implements OnInit {
   search: string = '';
   favorites: Suggestion[] = [];
-  suggestions: Suggestion[] = [
+  suggestions: Suggestion[] = [];
+
+  // Initial mock data
+  private initialSuggestions: Suggestion[] = [
     {
       id: 1,
       title: 'Organiser une journée team building',
@@ -47,17 +50,50 @@ export class ListSuggestionComponent {
       nbLikes: 0
     }
   ];
-  
-  likeSuggestion(s: Suggestion) {
-    s.nbLikes++;
+
+  ngOnInit(): void {
+    this.loadSuggestions();
   }
-  
-  addToFavorites(s: Suggestion) {
+
+  loadSuggestions(): void {
+    const stored = localStorage.getItem('suggestions');
+    
+    if (stored) {
+      // Load from localStorage and parse dates
+      this.suggestions = JSON.parse(stored).map((s: any) => ({
+        ...s,
+        date: new Date(s.date) // Convert date strings back to Date objects
+      }));
+    } else {
+      // Use initial mock data if nothing in localStorage
+      this.suggestions = [...this.initialSuggestions];
+      // Save initial data to localStorage
+      this.saveSuggestions();
+    }
+  }
+
+  likeSuggestion(s: Suggestion): void {
+    s.nbLikes++;
+    this.saveSuggestions();
+  }
+
+  addToFavorites(s: Suggestion): void {
     if (!this.favorites.includes(s)) {
       this.favorites.push(s);
     }
   }
-  
+
+  deleteSuggestion(id: number): void {
+    if (confirm('Êtes-vous sûr de vouloir supprimer cette suggestion ?')) {
+      this.suggestions = this.suggestions.filter(s => s.id !== id);
+      this.saveSuggestions();
+    }
+  }
+
+  private saveSuggestions(): void {
+    localStorage.setItem('suggestions', JSON.stringify(this.suggestions));
+  }
+
   get filteredSuggestions(): Suggestion[] {
     return this.suggestions.filter(s =>
       s.title.toLowerCase().includes(this.search.toLowerCase()) ||

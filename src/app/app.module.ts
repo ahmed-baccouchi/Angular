@@ -21,7 +21,8 @@ import { SuggestionsModule } from './features/suggestions/suggestions.module';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    SuggestionsModule
+    SuggestionsModule,
+    
   ],
   providers: [
     provideClientHydration()
